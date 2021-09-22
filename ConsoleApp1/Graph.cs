@@ -10,6 +10,8 @@ namespace Task1
     public class Graph
     {
         private List<NodeClass> ArrNode = new List<NodeClass>();
+
+        private List<EdgeClass> ArrForWeightEdge = new List<EdgeClass>();
         public Graph()
         {
 
@@ -66,10 +68,6 @@ namespace Task1
                 NodeClass n = new NodeClass(value);
                 ArrNode.Add(n);
             }
-            else
-            {
-                throw new Exception("Такой узел уже есть!");
-            }
         }
 
         public void AddEdgeInGraph(int valNode1, int valNode2)
@@ -80,12 +78,17 @@ namespace Task1
                 if (boolFindNode(valNode2))
                 {
                     FindNode(valNode1).AddNodeInList(FindNode(valNode2));
+                    EdgeClass edge = new EdgeClass(FindNode(valNode1), FindNode(valNode2), 0); //WEIGHT ПО ДЕФОЛТУ
+                    ArrForWeightEdge.Add(edge);
                 }
                 else
                 {
                     NodeClass n = new NodeClass(valNode2);
                     FindNode(valNode1).AddNodeInList(n);
                     ArrNode.Add(n);
+
+                    EdgeClass edge = new EdgeClass(FindNode(valNode1), FindNode(valNode2), 0); //WEIGHT ПО ДЕФОЛТУ
+                    ArrForWeightEdge.Add(edge);
                 }
             }
             else
@@ -93,6 +96,35 @@ namespace Task1
                 throw new Exception("Первого узла вообще не существует.");
             }
                 
+        }
+
+        //ПЕРЕГРУЗКА ДЛЯ МЕТОДА С УКАЗАНИЕМ ВЕСА
+        public void AddEdgeInGraph(int valNode1, int valNode2, int valWeight)
+        {
+
+            if (boolFindNode(valNode1))
+            {
+                if (boolFindNode(valNode2))
+                {
+                    FindNode(valNode1).AddNodeInList(FindNode(valNode2));
+                    EdgeClass edge = new EdgeClass(FindNode(valNode1), FindNode(valNode2), valWeight); //WEIGHT
+                    ArrForWeightEdge.Add(edge);
+                }
+                else
+                {
+                    NodeClass n = new NodeClass(valNode2);
+                    FindNode(valNode1).AddNodeInList(n);
+                    ArrNode.Add(n);
+
+                    EdgeClass edge = new EdgeClass(FindNode(valNode1), FindNode(valNode2), valWeight); //WEIGHT
+                    ArrForWeightEdge.Add(edge);
+                }
+            }
+            else
+            {
+                throw new Exception("Первого узла вообще не существует.");
+            }
+
         }
 
         private bool FindEdgeInGraph(NodeClass n1, NodeClass n2)
@@ -132,6 +164,19 @@ namespace Task1
             }
         }
 
+        public int FindIndexEdgeForWeight(NodeClass valFrom, NodeClass valTo)
+        {
+            for (int i = 0; i < ArrForWeightEdge.Count; i++)
+            {
+                if(ArrForWeightEdge[i].ValFrom == valFrom && ArrForWeightEdge[i].ValTo == valTo)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
         public void DeleteEdgeFromGraph(int val1, int val2)
         {
             if (boolFindNode(val1) && (boolFindNode(val2)))
@@ -139,6 +184,8 @@ namespace Task1
                 if (FindNode(val1).FindEdge(FindNode(val2)))
                 {
                     FindNode(val1).DeleteEdge(val2);
+                    ArrForWeightEdge.RemoveAt(FindIndexEdgeForWeight(FindNode(val1), FindNode(val2)));
+
                 }
                 else
                 {
@@ -207,6 +254,18 @@ namespace Task1
                     Convert(line);
                 }
             }
+        }
+
+        public void PrintEdgeWeights()
+        {
+            for (int i = 0; i < ArrForWeightEdge.Count; i++)
+            {
+                Console.WriteLine( "From: " + ArrForWeightEdge[i].ValFrom.ValueNode + " "
+                                 + "To: " + ArrForWeightEdge[i].ValTo.ValueNode + " "
+                                 + "Weight: " + ArrForWeightEdge[i].Weight );
+            }
+
+            Console.WriteLine();
         }
     }
 }
