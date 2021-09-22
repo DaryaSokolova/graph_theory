@@ -7,29 +7,98 @@ namespace Task1
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            string path = @"C:\graph\GraphWriting.txt";
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            string path1 = @"C:\graph\GraphWriting.txt";
+            string path2 = @"C:\graph\GraphReading.txt";
 
+            Graph g = new Graph(); //пустой граф
+            Graph p = new Graph(path2); //из файлика
+            Graph q = new Graph(p); //скопировать существующий граф
+
+
+            Console.WriteLine("Для вашего удобства по умолчанию считывается из файла");
+            Console.WriteLine("для смены способа создания измените на соответсвующий объект графа");
             try
             {
+                Console.WriteLine("Текущий граф:");
+                p.PrintArrNode();
 
-                Graph g = new Graph();
-                Graph p = new Graph(path);
-                Graph q = new Graph(p);
+                Console.WriteLine("1 - добавить узел");
+                Console.WriteLine("2 - добавить ребро");
+                Console.WriteLine("3 - удалить узел");
+                Console.WriteLine("4 - удалить ребро");
+                Console.WriteLine("5 - вывести в файл");
+                int selection = Convert.ToInt32(Console.ReadLine());
+                switch (selection)
+                {
+                    case 1:
 
-                q.AddNodeInGraph(7474);
-                q.AddEdgeInGraph(40, 7474, 666);
+                        Console.WriteLine("При добавлении существующего узла " +
+                            "его дубликат не добавится.");
 
-                q.PrintEdgeWeights();
-                q.PrintArrNode();
+                        Console.Write("int узел = ");
+                        int val = Convert.ToInt32(Console.ReadLine());
+                        p.AddNodeInGraph(val);
+                        p.PrintArrNode();
 
-                q.DeleteEdgeFromGraph(40, 7474);
-                q.PrintEdgeWeights();
-                q.PrintArrNode();
+                        break;
+                    case 2:
+
+                        Console.WriteLine("При добавлении дуги к несуществующему узлу " +
+                            "будет создан новый узел.");
+
+                        Console.Write("int узела1 = ");
+                        int val1 = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("int узела2 = ");
+                        int val2 = Convert.ToInt32(Console.ReadLine());
+
+                        p.AddEdgeInGraph(val1, val2);
+                        p.PrintArrNode();
+
+                        break;
+
+                    case 3:
+
+                        Console.Write("int узела = ");
+                        int valВDel = Convert.ToInt32(Console.ReadLine());
+
+                        p.DeleteNodeFromGraph(valВDel);
+                        p.PrintArrNode();
+                        
+                        break;
+
+
+                    case 4:
+
+                        Console.WriteLine("При удалении дуги к несуществующему узлу " +
+                            "- ничего не изменится");
+
+                        Console.Write("int узела1 = ");
+                        int valВDel1 = Convert.ToInt32(Console.ReadLine());
+
+                        Console.Write("int узела2 = ");
+                        int valВDel2 = Convert.ToInt32(Console.ReadLine());
+
+                        p.DeleteEdgeFromGraph(valВDel1, valВDel2);
+                        p.PrintArrNode();
+
+                        break;
+
+                    case 5:
+
+                        p.WriteArrNode(path1);
+
+                        break;
+
+                    default:
+                        Console.WriteLine("Вы нажали неизвестную команду");
+                        break;
+                }
 
             }
             catch (Exception ex)
             {
-                Console.OutputEncoding = System.Text.Encoding.UTF8;
                 Console.WriteLine(ex.Message);
             }
 
