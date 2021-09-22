@@ -9,7 +9,7 @@ namespace Task1
             Console.WriteLine("Hello World!");
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             string path1 = @"C:\graph\GraphWriting.txt";
-            string path2 = @"C:\graph\GraphReading.txt";
+            string path2 = @"C:\graph\test4.txt";
 
             Graph g = new Graph(); //пустой граф
             Graph p = new Graph(path2); //из файлика
