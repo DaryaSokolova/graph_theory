@@ -23,85 +23,130 @@ namespace Task1
                 Console.WriteLine("Текущий граф:");
                 p.PrintArrNode();
 
-                Console.WriteLine("1 - добавить узел");
-                Console.WriteLine("2 - добавить ребро");
-                Console.WriteLine("3 - удалить узел");
-                Console.WriteLine("4 - удалить ребро");
-                Console.WriteLine("5 - вывести в файл");
-                int selection = Convert.ToInt32(Console.ReadLine());
-                switch (selection)
+                while (true)
                 {
-                    case 1:
 
-                        Console.WriteLine("При добавлении существующего узла " +
-                            "его дубликат не добавится.");
+                    Console.WriteLine("1 - добавить узел");
+                    Console.WriteLine("2 - добавить ребро");
+                    Console.WriteLine("3 - удалить узел");
+                    Console.WriteLine("4 - удалить ребро");
+                    Console.WriteLine("5 - добавить ребру вес");
+                    Console.WriteLine("6 - вывести в файл");
+                    int selection = Convert.ToInt32(Console.ReadLine());
+                    switch (selection)
+                    {
+                        case 1:
 
-                        Console.Write("int узел = ");
-                        int val = Convert.ToInt32(Console.ReadLine());
-                        p.AddNodeInGraph(val);
-                        p.PrintArrNode();
+                            Console.WriteLine("При добавлении существующего узла " +
+                                "его дубликат не добавится.");
 
-                        break;
-                    case 2:
+                            Console.Write("int узел = ");
+                            int val = Convert.ToInt32(Console.ReadLine());
+                            p.AddNodeInGraph(val);
+                            p.PrintArrNode();
 
-                        Console.WriteLine("При добавлении дуги к несуществующему узлу " +
-                            "будет создан новый узел.");
+                            break;
+                        case 2:
 
-                        Console.Write("int узела1 = ");
-                        int val1 = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("При добавлении дуги к несуществующему узлу " +
+                                "будет создан новый узел.");
 
-                        Console.Write("int узела2 = ");
-                        int val2 = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("1 - Без веса, вес будет равен 0");
+                            Console.WriteLine("2 - ребро с весом");
+                            Console.WriteLine("Иное = выход");
+                            int selection2 = Convert.ToInt32(Console.ReadLine());
+                            switch (selection2)
+                            {
+                                case 1:
+                                    Console.Write("int узела1 = ");
+                                    int val1 = Convert.ToInt32(Console.ReadLine());
 
-                        p.AddEdgeInGraph(val1, val2);
-                        p.PrintArrNode();
+                                    Console.Write("int узела2 = ");
+                                    int val2 = Convert.ToInt32(Console.ReadLine());
 
-                        break;
+                                    p.AddEdgeInGraph(val1, val2);
+                                    break;
 
-                    case 3:
+                                case 2:
+                                    Console.Write("int узела1 = ");
+                                    int valWithWeight1 = Convert.ToInt32(Console.ReadLine());
 
-                        Console.Write("int узела = ");
-                        int valВDel = Convert.ToInt32(Console.ReadLine());
+                                    Console.Write("int узела2 = ");
+                                    int valWithWeight2 = Convert.ToInt32(Console.ReadLine());
 
-                        p.DeleteNodeFromGraph(valВDel);
-                        p.PrintArrNode();
-                        
-                        break;
+                                    Console.Write("int вес = ");
+                                    int valWeight2 = Convert.ToInt32(Console.ReadLine());
+                                    p.AddEdgeInGraph(valWithWeight1, valWithWeight2, valWeight2);
+
+                                    Console.WriteLine("Текущие веса:");
+                                    p.PrintEdgeWeights();
+                                    break;
+
+                                default: break;
+                            }
+                            p.PrintArrNode();
+
+                            break;
+
+                        case 3:
+
+                            Console.Write("int узела = ");
+                            int valВDel = Convert.ToInt32(Console.ReadLine());
+
+                            p.DeleteNodeFromGraph(valВDel);
+                            p.PrintArrNode();
+
+                            break;
 
 
-                    case 4:
+                        case 4:
 
-                        Console.WriteLine("При удалении дуги к несуществующему узлу " +
-                            "- ничего не изменится");
+                            Console.WriteLine("При удалении дуги к несуществующему узлу " +
+                                "- ничего не изменится");
 
-                        Console.Write("int узела1 = ");
-                        int valВDel1 = Convert.ToInt32(Console.ReadLine());
+                            Console.Write("int узела1 = ");
+                            int valВDel1 = Convert.ToInt32(Console.ReadLine());
 
-                        Console.Write("int узела2 = ");
-                        int valВDel2 = Convert.ToInt32(Console.ReadLine());
+                            Console.Write("int узела2 = ");
+                            int valВDel2 = Convert.ToInt32(Console.ReadLine());
 
-                        p.DeleteEdgeFromGraph(valВDel1, valВDel2);
-                        p.PrintArrNode();
+                            p.DeleteEdgeFromGraph(valВDel1, valВDel2);
+                            p.PrintArrNode();
 
-                        break;
+                            break;
+                        case 5:
 
-                    case 5:
+                            Console.Write("int узела1 = ");
+                            int valInsert1 = Convert.ToInt32(Console.ReadLine());
 
-                        p.WriteArrNode(path1);
+                            Console.Write("int узела2 = ");
+                            int valInsert2 = Convert.ToInt32(Console.ReadLine());
 
-                        break;
+                            Console.Write("int вес = ");
+                            int valWeight = Convert.ToInt32(Console.ReadLine());
 
-                    default:
-                        Console.WriteLine("Вы нажали неизвестную команду");
-                        break;
+                            p.AddWeightInEdge(valInsert1, valInsert2, valWeight);
+                            p.PrintEdgeWeights();
+
+                            break;
+
+                        case 6:
+
+                            p.WriteArrNode(path1);
+
+                            break;
+
+                        default:
+                            Console.WriteLine("Вы нажали неизвестную команду");
+                            break;
+
+                    }
                 }
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
         }
     }
 }

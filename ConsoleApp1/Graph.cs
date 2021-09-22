@@ -267,5 +267,17 @@ namespace Task1
 
             Console.WriteLine();
         }
+
+        public void AddWeightInEdge(int valFrom, int valTo, int value)
+        {
+            if (FindIndexEdgeForWeight(FindNode(valFrom), FindNode(valTo)) != -1)
+            {
+                ArrForWeightEdge[FindIndexEdgeForWeight(FindNode(valFrom), FindNode(valTo))].Weight = value;
+            }
+            else
+            {
+                throw new Exception("Дуги не существует");
+            }
+        }
     }
 }

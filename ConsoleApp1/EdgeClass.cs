@@ -20,7 +20,7 @@ namespace Task1
 
         public int Weight
         {
-            get;
+            get; set;
         }
 
         public EdgeClass(NodeClass valFrom, NodeClass valTo, int weight)
