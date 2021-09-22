@@ -21,6 +21,11 @@ namespace Task1
 
                 q.PrintEdgeWeights();
                 q.PrintArrNode();
+
+                q.DeleteEdgeFromGraph(40, 7474);
+                q.PrintEdgeWeights();
+                q.PrintArrNode();
+
             }
             catch (Exception ex)
             {
