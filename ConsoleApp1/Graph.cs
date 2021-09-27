@@ -12,9 +12,15 @@ namespace Task1
         private List<NodeClass> ArrNode = new List<NodeClass>();
 
         private List<EdgeClass> ArrForWeightEdge = new List<EdgeClass>();
-        public Graph()
+        public bool IsOrgraph
         {
+            get;
 
+            private set;
+        }
+        public Graph(bool isOrgraph)
+        {
+            IsOrgraph = isOrgraph;
         }
 
         public Graph(string path)
@@ -77,15 +83,28 @@ namespace Task1
             {
                 if (boolFindNode(valNode2))
                 {
-                    FindNode(valNode1).AddNodeInList(FindNode(valNode2));
-                    EdgeClass edge = new EdgeClass(FindNode(valNode1), FindNode(valNode2), 0); //WEIGHT ПО ДЕФОЛТУ
-                    ArrForWeightEdge.Add(edge);
+                    if (FindNode(valNode1).FindEdge(FindNode(valNode2)) == false)
+                    {
+                        FindNode(valNode1).AddNodeInList(FindNode(valNode2));
+                        EdgeClass edge = new EdgeClass(FindNode(valNode1), FindNode(valNode2), 0); //WEIGHT ПО ДЕФОЛТУ
+                        ArrForWeightEdge.Add(edge);
+
+                        if (IsOrgraph == false && valNode1 != valNode2)
+                        {
+                            FindNode(valNode2).AddNodeInList(FindNode(valNode1));
+                        }
+                    }
                 }
                 else
                 {
                     NodeClass n = new NodeClass(valNode2);
                     FindNode(valNode1).AddNodeInList(n);
                     ArrNode.Add(n);
+
+                    if (IsOrgraph == false)
+                    {
+                        FindNode(valNode2).AddNodeInList(FindNode(valNode1));
+                    }
 
                     EdgeClass edge = new EdgeClass(FindNode(valNode1), FindNode(valNode2), 0); //WEIGHT ПО ДЕФОЛТУ
                     ArrForWeightEdge.Add(edge);
@@ -95,7 +114,7 @@ namespace Task1
             {
                 throw new Exception("Первого узла вообще не существует.");
             }
-                
+
         }
 
         //ПЕРЕГРУЗКА ДЛЯ МЕТОДА С УКАЗАНИЕМ ВЕСА
@@ -109,12 +128,22 @@ namespace Task1
                     FindNode(valNode1).AddNodeInList(FindNode(valNode2));
                     EdgeClass edge = new EdgeClass(FindNode(valNode1), FindNode(valNode2), valWeight); //WEIGHT
                     ArrForWeightEdge.Add(edge);
+
+                    if (IsOrgraph == false)
+                    {
+                        FindNode(valNode2).AddNodeInList(FindNode(valNode1));
+                    }
                 }
                 else
                 {
                     NodeClass n = new NodeClass(valNode2);
                     FindNode(valNode1).AddNodeInList(n);
                     ArrNode.Add(n);
+
+                    if (IsOrgraph == false)
+                    {
+                        FindNode(valNode2).AddNodeInList(FindNode(valNode1));
+                    }
 
                     EdgeClass edge = new EdgeClass(FindNode(valNode1), FindNode(valNode2), valWeight); //WEIGHT
                     ArrForWeightEdge.Add(edge);
@@ -168,7 +197,7 @@ namespace Task1
         {
             for (int i = 0; i < ArrForWeightEdge.Count; i++)
             {
-                if(ArrForWeightEdge[i].ValFrom == valFrom && ArrForWeightEdge[i].ValTo == valTo)
+                if (ArrForWeightEdge[i].ValFrom == valFrom && ArrForWeightEdge[i].ValTo == valTo)
                 {
                     return i;
                 }
@@ -184,6 +213,12 @@ namespace Task1
                 if (FindNode(val1).FindEdge(FindNode(val2)))
                 {
                     FindNode(val1).DeleteEdge(val2);
+
+                    if (IsOrgraph == false)
+                    {
+                        FindNode(val2).DeleteEdge(val1);
+                    }
+
                     ArrForWeightEdge.RemoveAt(FindIndexEdgeForWeight(FindNode(val1), FindNode(val2)));
 
                 }
@@ -196,6 +231,11 @@ namespace Task1
 
         public void PrintArrNode()
         {
+            if (IsOrgraph == true)
+            {
+                Console.WriteLine("ORGRAPH");
+            }
+            else Console.WriteLine("NOT ORGRAPH");
             Console.WriteLine();
             for (int i = 0; i < ArrNode.Count; i++)
             {
@@ -207,6 +247,21 @@ namespace Task1
         {
 
             using (StreamWriter sw = new StreamWriter(path, false)) { }
+
+            if (IsOrgraph == false)
+            {
+                using (StreamWriter sw = new StreamWriter(path, true))
+                {
+                    sw.WriteLine("false");
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = new StreamWriter(path, true))
+                {
+                    sw.WriteLine("true");
+                }
+            }
 
             for (int i = 0; i < ArrNode.Count; i++)
             {
@@ -226,19 +281,28 @@ namespace Task1
 
         private void Convert(string str)
         {
-            string tempNode = str.Substring(0, str.IndexOf('|'));
-            int node = ConvertNode(tempNode);
-            string tempStr = str.Substring(str.IndexOf('|') + 1);
-
-            string[] nodesInList = tempStr.Split(' ');
-
-            for (int i = 0; i < nodesInList.Length; i++)
+            if (str == "true" || str == "false")
             {
-                if (nodesInList[i] != "")
-                {
-                    int temp = Int32.Parse(nodesInList[i]);
-                    AddEdgeInGraph(node, temp);
+                if (str == "true")
+                    IsOrgraph = true;
+                else IsOrgraph = false;
+            }
+            else
+            {
+                string tempNode = str.Substring(0, str.IndexOf('|'));
+                int node = ConvertNode(tempNode);
+                string tempStr = str.Substring(str.IndexOf('|') + 1);
 
+                string[] nodesInList = tempStr.Split(' ');
+
+                for (int i = 0; i < nodesInList.Length; i++)
+                {
+                    if (nodesInList[i] != "")
+                    {
+                        int temp = Int32.Parse(nodesInList[i]);
+                        AddEdgeInGraph(node, temp);
+
+                    }
                 }
             }
         }
@@ -260,9 +324,9 @@ namespace Task1
         {
             for (int i = 0; i < ArrForWeightEdge.Count; i++)
             {
-                Console.WriteLine( "From: " + ArrForWeightEdge[i].ValFrom.ValueNode + " "
+                Console.WriteLine("From: " + ArrForWeightEdge[i].ValFrom.ValueNode + " "
                                  + "To: " + ArrForWeightEdge[i].ValTo.ValueNode + " "
-                                 + "Weight: " + ArrForWeightEdge[i].Weight );
+                                 + "Weight: " + ArrForWeightEdge[i].Weight);
             }
 
             Console.WriteLine();

@@ -8,12 +8,38 @@ namespace Task1
         {
             Console.WriteLine("Hello World!");
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            string path1 = @"C:\graph\GraphWriting.txt";
-            string path2 = @"C:\graph\test4.txt";
+            string path1 = @"C:\graph\GraphReadingOrgraph.txt";
+            string path2 = @"C:\graph\GraphReadingNotOrgraph.txt";
+            string path3 = @"C:\graph\GraphWriting.txt";
+            string path4 = @"C:\graph\GraphReadingOrgraph2.txt";
+            string path5 = @"C:\graph\GraphReadingNotOrgraph2.txt";
 
-            Graph g = new Graph(); //пустой граф
-            Graph p = new Graph(path2); //из файлика
-            Graph q = new Graph(p); //скопировать существующий граф
+            //Graph g = new Graph(false); //пустой граф
+            //g.AddNodeInGraph(5);
+            //g.AddNodeInGraph(6);
+            //g.AddNodeInGraph(7);
+            //g.AddEdgeInGraph(5, 6);
+
+            //g.AddEdgeInGraph(6, 6);
+            //g.AddEdgeInGraph(6, 7);
+            //g.AddEdgeInGraph(6, 8);
+            //g.AddEdgeInGraph(8, 5);
+
+            //g.PrintArrNode();
+
+            //g.DeleteEdgeFromGraph(5, 6);
+
+            //g.PrintArrNode();
+            //try {
+            Graph p = new Graph(path5); //из файлика
+                                        //p.PrintArrNode();
+                                        //p.WriteArrNode(path3);
+                                        //}
+                                        //catch (Exception ex)
+                                        //{
+                                        //    Console.WriteLine(ex.Message);
+                                        //}
+                                        //Graph q = new Graph(p); //скопировать существующий граф
 
 
             Console.WriteLine("Для вашего удобства по умолчанию считывается из файла");
@@ -132,7 +158,7 @@ namespace Task1
 
                         case 6:
 
-                            p.WriteArrNode(path1);
+                            p.WriteArrNode(path3);
 
                             break;
 
