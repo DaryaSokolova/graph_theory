@@ -15,32 +15,8 @@ namespace Task1
             string path5 = @"C:\graph\GraphReadingNotOrgraph2.txt";
 
             //Graph g = new Graph(false); //пустой граф
-            //g.AddNodeInGraph(5);
-            //g.AddNodeInGraph(6);
-            //g.AddNodeInGraph(7);
-            //g.AddEdgeInGraph(5, 6);
 
-            //g.AddEdgeInGraph(6, 6);
-            //g.AddEdgeInGraph(6, 7);
-            //g.AddEdgeInGraph(6, 8);
-            //g.AddEdgeInGraph(8, 5);
-
-            //g.PrintArrNode();
-
-            //g.DeleteEdgeFromGraph(5, 6);
-
-            //g.PrintArrNode();
-            //try {
             Graph p = new Graph(path5); //из файлика
-                                        //p.PrintArrNode();
-                                        //p.WriteArrNode(path3);
-                                        //}
-                                        //catch (Exception ex)
-                                        //{
-                                        //    Console.WriteLine(ex.Message);
-                                        //}
-                                        //Graph q = new Graph(p); //скопировать существующий граф
-
 
             Console.WriteLine("Для вашего удобства по умолчанию считывается из файла");
             Console.WriteLine("для смены способа создания измените на соответсвующий объект графа");
