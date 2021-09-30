@@ -343,5 +343,21 @@ namespace Task1
                 throw new Exception("Дуги не существует");
             }
         }
+
+        private int FindHalfDegreeExodus(int value)
+        {
+            return FindNode(value).CheckList().Count; ;
+        }
+
+        public void printHalfDegreeForTask2 (int value)
+        {
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                if (FindHalfDegreeExodus(ArrNode[i].ValueNode) > FindHalfDegreeExodus(value))
+                {
+                    Console.WriteLine(ArrNode[i].ValueNode);
+                }
+            }
+        }
     }
 }
