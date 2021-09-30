@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleApp1\Task1.csproj" />
+    <ProjectReference Include="..\Class_Graph\Graph_Class.csproj" />
   </ItemGroup>
 
 </Project>
