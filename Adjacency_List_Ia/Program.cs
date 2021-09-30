@@ -17,7 +17,7 @@ namespace Task
 
             //Graph g = new Graph(false); //пустой граф
 
-            Graph p = new Graph(path1); //из файлика
+            Graph p = new Graph(path2); //из файлика
 
             p.PrintArrNode();
             try
