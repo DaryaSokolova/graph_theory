@@ -23,7 +23,6 @@ namespace Task2
             p.PrintArrNode();
             try
             {
-
                 Console.WriteLine("Введите вершину: ");
                 int input = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("*****************");
