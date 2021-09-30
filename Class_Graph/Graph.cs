@@ -348,7 +348,7 @@ namespace Task
         {
             if (boolFindNode(value))
             {
-                return FindNode(value).CheckList().Count; ;
+                return FindNode(value).CheckList().Count;
 
             }
             else
