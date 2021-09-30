@@ -346,10 +346,18 @@ namespace Task1
 
         private int FindHalfDegreeExodus(int value)
         {
-            return FindNode(value).CheckList().Count; ;
+            if (boolFindNode(value))
+            {
+                return FindNode(value).CheckList().Count; ;
+
+            }
+            else
+            {
+                throw new Exception("Такого узла нет в графе");
+            }
         }
 
-        public void printHalfDegreeForTask2 (int value)
+        public void printHalfDegreeForTask2(int value)
         {
             for (int i = 0; i < ArrNode.Count; i++)
             {

@@ -18,9 +18,21 @@ namespace Task2
 
             //Graph g = new Graph(false); //пустой граф
 
-            Graph p = new Graph(path2); //из файлика
+            Graph p = new Graph(path1); //из файлика
 
-            p.printHalfDegreeForTask2(6);
+            p.PrintArrNode();
+            try
+            {
+
+                Console.WriteLine("Введите вершину: ");
+                int input = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("*****************");
+                p.printHalfDegreeForTask2(input);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
