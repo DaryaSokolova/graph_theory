@@ -367,5 +367,19 @@ namespace Task
                 }
             }
         }
+
+        public void printNodeForTask3 (int value)
+        {
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                if (FindEdgeInGraph(ArrNode[i], FindNode(value)) == false
+                    && (FindEdgeInGraph(FindNode(value), ArrNode[i])) == false
+                    && ArrNode[i].ValueNode != value)
+                {
+                    Console.WriteLine(ArrNode[i].ValueNode);
+                }
+
+            }
+        }
     }
 }
