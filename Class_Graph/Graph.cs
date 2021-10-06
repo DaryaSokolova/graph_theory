@@ -368,7 +368,7 @@ namespace Task
             }
         }
 
-        public void printNodeForTask3 (int value)
+        public void PrintNodeForTask3 (int value)
         {
             for (int i = 0; i < ArrNode.Count; i++)
             {
@@ -380,6 +380,35 @@ namespace Task
                 }
 
             }
+        }
+
+        public bool CheckG1InG2 (Graph g2)
+        {
+            //nodes
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                if (g2.boolFindNode(ArrNode[i].ValueNode) == false)
+                {
+                    Console.WriteLine("Вершина " + ArrNode[i].ValueNode + " отсутствует.");
+                    return false;
+                }
+            }
+
+            //edges
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                List<int> temp = ArrNode[i].CheckList();
+                for (int j = 0; j < temp.Count; j++)
+                {
+                    if (g2.FindEdgeInGraph(g2.ArrNode[i], g2.FindNode(temp[j])) == false)
+                    {
+                        Console.WriteLine("Дуга/ребро между " + g2.ArrNode[i].ValueNode + " и " + g2.FindNode(temp[j]).ValueNode + " отсутствует.");
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }

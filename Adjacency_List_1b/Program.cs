@@ -17,20 +17,18 @@ namespace Task
 
             //Graph g = new Graph(false); //пустой граф
 
-            Graph p = new Graph(path2); //из файлика
-
+            Graph p = new Graph(path1); //из файлика
+            Console.WriteLine("p: ");
             p.PrintArrNode();
-            try
-            {
-                Console.WriteLine("Введите вершину: ");
-                int input = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("*****************");
-                p.PrintNodeForTask3(input);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Graph p1 = new Graph(path1);
+            p1.AddNodeInGraph(666);
+            p1.AddEdgeInGraph(45, 6);
+            //p1.DeleteNodeFromGraph(5);
+            p1.DeleteEdgeFromGraph(5, 10);
+            Console.WriteLine("p1: ");
+            p1.PrintArrNode();
+
+            Console.WriteLine(p.CheckG1InG2(p1));
         }
     }
 }
