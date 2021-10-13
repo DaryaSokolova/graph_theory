@@ -20,8 +20,15 @@ namespace Task
 
             Graph p = new Graph(path6); //из файлика
 
-            p.PrintArrNode();
-            p.DepthFirstSearch();
+            try
+            {
+                p.TaskDFSII(5, 40, 2);
+                p.PrintArrNode();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

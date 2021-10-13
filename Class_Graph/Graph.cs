@@ -418,6 +418,7 @@ namespace Task
 
         private List<int> arrUsed = new List<int>();
 
+        //проход по компоненте связности
         private void DFS(int v)
         {
             for (int i = 0; i < arrUsed.Count; i++)
@@ -443,7 +444,74 @@ namespace Task
                 arrUsed.Add(ArrNode[i].ValueNode);
             }
 
-            DFS(arrUsed[0]);
+            while (arrUsed.Count != 0)
+            {
+                DFS(arrUsed[0]);
+            }
+        }
+
+        public bool isLine = false;
+        private void DFSII(int v, int u)
+        {
+            for (int i = 0; i < arrUsed.Count; i++)
+            {
+                if (arrUsed[i] == v)
+                {
+                    Console.WriteLine(v);
+                    arrUsed.Remove(v);
+
+                    if (v == u)
+                    {
+                        isLine = true;
+                    }
+
+                    NodeClass n = FindNode(v);
+                    for (int j = 0; j < n.AdjacencyList.Count; j++)
+                    {
+                        DFSII(n.AdjacencyList[j], u);
+                    }
+                }
+            }
+        }
+
+        public void TaskDFSII(int v, int u, int k)
+        {
+            if (boolFindNode (v) == false || boolFindNode (u) == false)
+            {
+                Console.WriteLine("некорректный ввод вершин");
+            }
+            else
+            {
+
+                for (int j = 0; j < k; j++)
+                {
+                    Console.WriteLine("Введите вершину1: ");
+                    int input1 = System.Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Введите вершину2: ");
+                    int input2 = System.Convert.ToInt32(Console.ReadLine());
+                    DeleteEdgeFromGraph(input1, input2);
+                }
+
+                int index = 0;
+                for (int i = 0; i < ArrNode.Count; i++)
+                {
+                    if (ArrNode[i].ValueNode == v)
+                    {
+                        index = i;
+                    }
+                    arrUsed.Add(ArrNode[i].ValueNode);
+                }
+                
+                DFSII(arrUsed[index], u);
+                if (isLine == true)
+                {
+                    Console.WriteLine("Путь существует");
+                }
+                else
+                {
+                    Console.WriteLine("Пути нет");
+                }
+            }
         }
     }
 }
