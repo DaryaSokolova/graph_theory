@@ -436,7 +436,7 @@ namespace Task
                 }
             }
         }
-        
+
         public void DepthFirstSearch()
         {
             for (int i = 0; i < ArrNode.Count; i++)
@@ -476,7 +476,7 @@ namespace Task
 
         public void TaskDFSII(int v, int u, int k)
         {
-            if (boolFindNode (v) == false || boolFindNode (u) == false)
+            if (boolFindNode(v) == false || boolFindNode(u) == false)
             {
                 Console.WriteLine("некорректный ввод вершин");
             }
@@ -501,7 +501,7 @@ namespace Task
                     }
                     arrUsed.Add(ArrNode[i].ValueNode);
                 }
-                
+
                 DFSII(arrUsed[index], u);
                 if (isLine == true)
                 {
@@ -510,6 +510,60 @@ namespace Task
                 else
                 {
                     Console.WriteLine("Пути нет");
+                }
+            }
+        }
+
+        private Queue<int> qNodes = new Queue<int>();
+        public int FindShortLine(int v1, int v2)
+        {
+            int[] count = new int[100];
+
+            for (int i = 0; i < count.Length; i++)
+            {
+                count[i] = int.MaxValue;
+            }
+
+            count[v1] = 0;
+            qNodes.Enqueue(v1);
+            while (qNodes.Count != 0)
+            {
+                int u = qNodes.Dequeue();
+                //Console.WriteLine(u);
+                for (int i = 0; i < FindNode(u).AdjacencyList.Count; i++)
+                {
+                    if (count[FindNode(u).AdjacencyList[i]] == int.MaxValue)
+                    {
+                        count[FindNode(u).AdjacencyList[i]] = count[u] + 1;
+                        qNodes.Enqueue(FindNode(u).AdjacencyList[i]);
+                    }
+                }
+            }
+            return count[v2];
+        }
+
+        public void TaskBFSII(int k)
+        {
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                bool flag = true;
+                for (int j = 0; j < ArrNode.Count; j++)
+                {
+                    int temp = 0;
+                    if (ArrNode[i].ValueNode != ArrNode[j].ValueNode)
+                    {
+                        temp = FindShortLine(ArrNode[i].ValueNode, ArrNode[j].ValueNode);
+
+                        if (temp > k)
+                        {
+                            flag = false;
+                        }
+                    }
+                }
+
+                if (flag == true)
+                {
+                    Console.WriteLine(ArrNode[i].ValueNode);
                 }
             }
         }

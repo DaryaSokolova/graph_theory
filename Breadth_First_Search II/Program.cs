@@ -19,17 +19,13 @@ namespace Task
 
             //Graph g = new Graph(false); //пустой граф
 
-            Graph p = new Graph(path7); //из файлика
+            Graph p = new Graph(path6); //из файлика
+            p.DeleteNodeFromGraph(20); //при наличии изолированных
+                                       //вершин ничего не выведет
 
-            try
-            {
-                p.TaskDFSII(5, 40, 2);
-                p.PrintArrNode();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            p.PrintArrNode();
+
+            p.TaskBFSII(3);
         }
     }
 }
