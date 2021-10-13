@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Depth_First_Search II", "De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Breadth_First_Search II", "Breadth_First_Search II\Breadth_First_Search II.csproj", "{A44BDDAE-95D3-4428-B2E6-E7215A602FFB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carcass_Algorithm_Prima III", "Carcass_Algorithm_Prima III\Carcass_Algorithm_Prima III.csproj", "{134CBE4C-6241-42A8-9472-76A9E7776EA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{A44BDDAE-95D3-4428-B2E6-E7215A602FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A44BDDAE-95D3-4428-B2E6-E7215A602FFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A44BDDAE-95D3-4428-B2E6-E7215A602FFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{134CBE4C-6241-42A8-9472-76A9E7776EA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{134CBE4C-6241-42A8-9472-76A9E7776EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{134CBE4C-6241-42A8-9472-76A9E7776EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{134CBE4C-6241-42A8-9472-76A9E7776EA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -515,7 +515,7 @@ namespace Task
         }
 
         private Queue<int> qNodes = new Queue<int>();
-        public int FindShortLine(int v1, int v2)
+        private int FindShortLine(int v1, int v2)
         {
             int[] count = new int[100];
 
@@ -565,6 +565,75 @@ namespace Task
                 {
                     Console.WriteLine(ArrNode[i].ValueNode);
                 }
+            }
+        }
+
+        public List<EdgeClass> resList = new List<EdgeClass>();
+        public void CarcassPrim()
+        {
+            List<EdgeClass> notUsedE = new List<EdgeClass>();
+
+            for (int i = 0; i < ArrForWeightEdge.Count; i++)
+            {
+                notUsedE.Add(ArrForWeightEdge[i]);
+            }
+
+            List<int> usedV = new List<int>();
+            List<int> notUsedV = new List<int>();
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                notUsedV.Add(ArrNode[i].ValueNode);
+            }
+
+            usedV.Add(ArrNode[0].ValueNode);
+            notUsedV.Remove(ArrNode[0].ValueNode);
+
+            while (notUsedV.Count != 0)
+            {
+                int minE = -1; //номер наименьшего ребра
+                               //поиск наименьшего ребра
+                for (int i = 0; i < notUsedE.Count; i++)
+                {
+                    if ((usedV.IndexOf(notUsedE[i].ValFrom.ValueNode) != -1)
+                        && (notUsedV.IndexOf(notUsedE[i].ValTo.ValueNode) != -1)
+                        || (usedV.IndexOf(notUsedE[i].ValTo.ValueNode) != -1)
+                        && (notUsedV.IndexOf(notUsedE[i].ValFrom.ValueNode) != -1))
+                    {
+                        if (minE != -1)
+                        {
+                            if (notUsedE[i].Weight < notUsedE[minE].Weight)
+                            {
+                                minE = i;
+                            }
+                        }
+                        else
+                        {
+                            minE = i;
+                        }
+                    }
+                }
+
+                if (usedV.IndexOf(notUsedE[minE].ValFrom.ValueNode) != -1)
+                {
+                    usedV.Add(notUsedE[minE].ValTo.ValueNode);
+                    notUsedV.Remove(notUsedE[minE].ValTo.ValueNode);
+                }
+                else
+                {
+                    usedV.Add(notUsedE[minE].ValFrom.ValueNode);
+                    notUsedV.Remove(notUsedE[minE].ValFrom.ValueNode);
+                }
+                //заносим новое ребро в дерево и удаляем его из списка неиспользованных
+                resList.Add(notUsedE[minE]);
+                notUsedE.RemoveAt(minE);
+            }
+        }
+
+        public void PrintResList ()
+        {
+            for (int i = 0; i < resList.Count; i++)
+            {
+                Console.WriteLine(resList[i].ValFrom.ValueNode + " " + resList[i].ValTo.ValueNode + " " + "weihgt = " + resList[i].Weight);
             }
         }
     }
