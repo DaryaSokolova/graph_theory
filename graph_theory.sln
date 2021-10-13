@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adjacency_List_Ia", "Adjace
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Graph_Class", "Class_Graph\Graph_Class.csproj", "{62F890F2-E005-412A-A827-F8FC6DE3769F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adjacency_List_Ia_(2)", "Adjacency_List_Ia_(2)\Adjacency_List_Ia_(2).csproj", "{09FF12EA-AD8D-45D3-8A96-D1B55DBDA528}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adjacency_List_Ia_(2)", "Adjacency_List_Ia_(2)\Adjacency_List_Ia_(2).csproj", "{09FF12EA-AD8D-45D3-8A96-D1B55DBDA528}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adjacency_List_1b", "Adjacency_List_1b\Adjacency_List_1b.csproj", "{4F39C0A2-674A-4AF4-9AE4-AB069B46C555}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Adjacency_List_1b", "Adjacency_List_1b\Adjacency_List_1b.csproj", "{4F39C0A2-674A-4AF4-9AE4-AB069B46C555}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Depth_First_Search II", "Depth_First_Search II\Depth_First_Search II.csproj", "{A501A7EE-9D31-4B2D-830F-BFFCD258AF2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{4F39C0A2-674A-4AF4-9AE4-AB069B46C555}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F39C0A2-674A-4AF4-9AE4-AB069B46C555}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F39C0A2-674A-4AF4-9AE4-AB069B46C555}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A501A7EE-9D31-4B2D-830F-BFFCD258AF2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A501A7EE-9D31-4B2D-830F-BFFCD258AF2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A501A7EE-9D31-4B2D-830F-BFFCD258AF2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A501A7EE-9D31-4B2D-830F-BFFCD258AF2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

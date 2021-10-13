@@ -13,7 +13,7 @@ namespace Task
             get;
         }
 
-        private List<int> AdjacencyList = new List<int>();
+        public List<int> AdjacencyList = new List<int>();
 
         public bool isLabel;
 

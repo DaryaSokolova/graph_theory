@@ -357,7 +357,7 @@ namespace Task
             }
         }
 
-        public void printHalfDegreeForTask2(int value)
+        public void PrintHalfDegreeForTask2(int value)
         {
             for (int i = 0; i < ArrNode.Count; i++)
             {
@@ -368,21 +368,26 @@ namespace Task
             }
         }
 
-        public void PrintNodeForTask3 (int value)
+        public void PrintNodeForTask3(int value)
         {
-            for (int i = 0; i < ArrNode.Count; i++)
+            if (boolFindNode(value))
             {
-                if (FindEdgeInGraph(ArrNode[i], FindNode(value)) == false
-                    && (FindEdgeInGraph(FindNode(value), ArrNode[i])) == false
-                    && ArrNode[i].ValueNode != value)
-                {
-                    Console.WriteLine(ArrNode[i].ValueNode);
-                }
 
+                for (int i = 0; i < ArrNode.Count; i++)
+                {
+                    if (FindEdgeInGraph(ArrNode[i], FindNode(value)) == false
+                        && (FindEdgeInGraph(FindNode(value), ArrNode[i])) == false
+                        && ArrNode[i].ValueNode != value)
+                    {
+                        Console.WriteLine(ArrNode[i].ValueNode);
+                    }
+
+                }
             }
+            else Console.WriteLine("такой вершины нет");
         }
 
-        public bool CheckG1InG2 (Graph g2)
+        public bool CheckG1InG2(Graph g2)
         {
             //nodes
             for (int i = 0; i < ArrNode.Count; i++)
@@ -402,13 +407,43 @@ namespace Task
                 {
                     if (g2.FindEdgeInGraph(g2.ArrNode[i], g2.FindNode(temp[j])) == false)
                     {
-                        Console.WriteLine("Дуга/ребро между " + g2.ArrNode[i].ValueNode + " и " + g2.FindNode(temp[j]).ValueNode + " отсутствует.");
+                        Console.WriteLine("Ребро между " + g2.ArrNode[i].ValueNode + " и " + g2.FindNode(temp[j]).ValueNode + " отсутствует.");
                         return false;
                     }
                 }
             }
 
             return true;
+        }
+
+        private List<int> arrUsed = new List<int>();
+
+        private void DFS(int v)
+        {
+            for (int i = 0; i < arrUsed.Count; i++)
+            {
+                if (arrUsed[i] == v)
+                {
+                    Console.WriteLine(v);
+                    arrUsed.Remove(v);
+
+                    NodeClass n = FindNode(v);
+                    for (int j = 0; j < n.AdjacencyList.Count; j++)
+                    {
+                        DFS(n.AdjacencyList[j]);
+                    }
+                }
+            }
+        }
+        
+        public void DepthFirstSearch()
+        {
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                arrUsed.Add(ArrNode[i].ValueNode);
+            }
+
+            DFS(arrUsed[0]);
         }
     }
 }

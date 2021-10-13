@@ -14,21 +14,14 @@ namespace Task
             string path3 = @"C:\graph\GraphWriting.txt";
             string path4 = @"C:\graph\GraphReadingOrgraph2.txt";
             string path5 = @"C:\graph\GraphReadingNotOrgraph2.txt";
+            string path6 = @"C:\graph\ExII.txt";
 
             //Graph g = new Graph(false); //пустой граф
 
-            Graph p = new Graph(path2); //из файлика
-            Console.WriteLine("p: ");
-            p.PrintArrNode();
-            Graph p1 = new Graph(path2);
-            p1.AddNodeInGraph(666);
-            p1.AddEdgeInGraph(45, 6);
-            p1.DeleteNodeFromGraph(5);
-            p1.DeleteEdgeFromGraph(5, 10);
-            Console.WriteLine("p1: ");
-            p1.PrintArrNode();
+            Graph p = new Graph(path6); //из файлика
 
-            Console.WriteLine(p.CheckG1InG2(p1));
+            p.PrintArrNode();
+            p.DepthFirstSearch();
         }
     }
 }

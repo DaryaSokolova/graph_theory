@@ -25,7 +25,7 @@ namespace Task
                 Console.WriteLine("Введите вершину: ");
                 int input = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("*****************");
-                p.printHalfDegreeForTask2(input);
+                p.PrintHalfDegreeForTask2(input);
             }
             catch(Exception ex)
             {
