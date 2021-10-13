@@ -15,10 +15,11 @@ namespace Task
             string path4 = @"C:\graph\GraphReadingOrgraph2.txt";
             string path5 = @"C:\graph\GraphReadingNotOrgraph2.txt";
             string path6 = @"C:\graph\ExII.txt";
+            string path7 = @"C:\graph\ExIIorgr.txt";
 
             //Graph g = new Graph(false); //пустой граф
 
-            Graph p = new Graph(path6); //из файлика
+            Graph p = new Graph(path7); //из файлика
 
             try
             {
