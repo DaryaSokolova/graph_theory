@@ -26,6 +26,12 @@ namespace Task
             p.PrintArrNode();
 
             p.TaskBFSII(3);
+
+
+            //           5
+            //       10     15         20
+            //     25 30      35
+            //   40
         }
     }
 }

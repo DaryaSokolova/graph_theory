@@ -19,7 +19,8 @@ namespace Task
 
             //Graph g = new Graph(false); //пустой граф
 
-            Graph p = new Graph(path7); //из файлика
+            Graph p = new Graph(path6); //из файлика
+            p.PrintArrNode();
 
             try
             {
@@ -30,6 +31,11 @@ namespace Task
             {
                 Console.WriteLine(ex.Message);
             }
+
+            //           5
+            //       10     15         20
+            //     25 30      35
+            //   40
         }
     }
 }

@@ -629,6 +629,10 @@ namespace Task
             }
         }
 
+        //   1
+        // /  \
+        //3  - 2
+
         public void PrintResList ()
         {
             for (int i = 0; i < resList.Count; i++)
