@@ -690,12 +690,6 @@ namespace Task
                 }
             }
 
-            //for (int i = 0; i < p.Length; i++)
-            //{
-            //    p[i] = p[i].Insert(0, System.Convert.ToString(node));
-            //    Console.WriteLine(p[i]);
-            //}
-
             return d;
         }
 
@@ -800,6 +794,49 @@ namespace Task
 
                     }
                 } 
+            }
+        }
+
+        private void Bell_Ford(int s)
+        {
+            int[] d = new int[ArrNode.Count];
+
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                d[i] = 1000;
+
+                if (ArrNode[i].ValueNode == s)
+                {
+                    d[i] = 0;
+                }
+            }
+
+            for (int i = 0; i < ArrNode.Count - 1; i++)
+            {
+                for (int j = 0; j < ArrForWeightEdge.Count; j++)
+                {
+                    int ind = FindIndexOfNode(ArrForWeightEdge[j].ValFrom);
+                    if (d[ind] < 1000)
+                    {
+                        if (d[FindIndexOfNode(ArrForWeightEdge[j].ValTo)] > d[ind] + ArrForWeightEdge[j].Weight)
+                        {
+                            d[FindIndexOfNode(ArrForWeightEdge[j].ValTo)] = d[ind] + ArrForWeightEdge[j].Weight;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < d.Length; i++)
+            {
+                Console.WriteLine(s + " " + ArrNode[i].ValueNode + " " + d[i]);
+            }
+        }
+
+        public void IV_B()
+        {
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                Bell_Ford(ArrNode[i].ValueNode);
             }
         }
     }
