@@ -640,5 +640,167 @@ namespace Task
                 Console.WriteLine(resList[i].ValFrom.ValueNode + " " + resList[i].ValTo.ValueNode + " " + "weihgt = " + resList[i].Weight);
             }
         }
+
+
+        private int[] DijkstraD(int node)
+        {
+            int[] d = new int[ArrNode.Count];
+            string[] p = new string[ArrNode.Count];
+            bool[] used = new bool[ArrNode.Count];
+
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                if (ArrNode[i].ValueNode == node)
+                {
+                    d[i] = 0;
+                    used[i] = true;
+                }
+                else
+                {
+                    d[i] = 1000;
+                    used[i] = false;
+                }
+                p[i] = "";
+            }
+
+            for (int j = 0; j < ArrNode.Count; j++)
+            {
+
+                for (int i = 0; i < ArrNode.Count; i++)
+                {
+                    if (!used[i])
+                    {
+                        if (FindIndexEdgeForWeight(ArrNode[j], ArrNode[i]) > -1)
+                        {
+                            if (d[i] > d[j] + ArrForWeightEdge[FindIndexEdgeForWeight(ArrNode[j], ArrNode[i])].Weight)
+                            {
+                                //Console.WriteLine(ArrNode[j].ValueNode + " " + ArrNode[i].ValueNode);
+                                d[i] = d[j] + ArrForWeightEdge[FindIndexEdgeForWeight(ArrNode[j], ArrNode[i])].Weight;
+                                p[i] = p[j] + " " + ArrNode[i].ValueNode;
+                            }
+                        }
+                    }
+
+                }
+
+                if (!used[j])
+                {
+                    //пусть это вершина с мин d[j]
+                    used[j] = true;
+                }
+            }
+
+            //for (int i = 0; i < p.Length; i++)
+            //{
+            //    p[i] = p[i].Insert(0, System.Convert.ToString(node));
+            //    Console.WriteLine(p[i]);
+            //}
+
+            return d;
+        }
+
+        private string[] DijkstraP(int node)
+        {
+            int[] d = new int[ArrNode.Count];
+            string[] p = new string[ArrNode.Count];
+            bool[] used = new bool[ArrNode.Count];
+
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                if (ArrNode[i].ValueNode == node)
+                {
+                    d[i] = 0;
+                    used[i] = true;
+                }
+                else
+                {
+                    d[i] = 1000;
+                    used[i] = false;
+                }
+                p[i] = "";
+            }
+
+            for (int j = 0; j < ArrNode.Count; j++)
+            {
+
+                for (int i = 0; i < ArrNode.Count; i++)
+                {
+                    if (!used[i])
+                    {
+                        if (FindIndexEdgeForWeight(ArrNode[j], ArrNode[i]) > -1)
+                        {
+                            if (d[i] > d[j] + ArrForWeightEdge[FindIndexEdgeForWeight(ArrNode[j], ArrNode[i])].Weight)
+                            {
+                                //Console.WriteLine(ArrNode[j].ValueNode + " " + ArrNode[i].ValueNode);
+                                d[i] = d[j] + ArrForWeightEdge[FindIndexEdgeForWeight(ArrNode[j], ArrNode[i])].Weight;
+                                p[i] = p[j] + " " + ArrNode[i].ValueNode;
+                            }
+                        }
+                    }
+
+                }
+
+                if (!used[j])
+                {
+                    //пусть это вершина с мин d[j]
+                    used[j] = true;
+                }
+            }
+
+            for (int i = 0; i < p.Length; i++)
+            {
+                p[i] = p[i].Insert(0, System.Convert.ToString(node));
+                //Console.WriteLine(p[i]);
+            }
+
+            return p;
+        }
+
+        public void IV_A (int u, int v)
+        {
+            int[] Arr = DijkstraD(u);
+
+            int indexV = -1;
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                if (ArrNode[i].ValueNode == v)
+                {
+                    indexV = i;
+                }
+            }
+
+            int val = Arr[indexV];
+            Console.WriteLine(u + " " + v + ": " + val);
+
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                for (int j = 0; j < ArrNode.Count; j++)
+                {
+                    if (ArrNode[i].ValueNode != ArrNode[j].ValueNode)
+                    {
+                        int[] temp = DijkstraD(ArrNode[i].ValueNode);
+
+                        int indexT = -1;
+                        for (int q = 0; q < ArrNode.Count; q++)
+                        {
+                            if (ArrNode[q].ValueNode == ArrNode[j].ValueNode)
+                            {
+                                indexT = q;
+                            }
+                        }
+
+                        int v1 = temp[indexT];
+
+                        //Console.WriteLine(ArrNode[i].ValueNode + " " + ArrNode[j].ValueNode + " " + v1 + " " + val);
+                        if (v1 == val)
+                        {
+                            string[] pT = DijkstraP(ArrNode[i].ValueNode);
+                            Console.WriteLine(pT[j]);
+                        }
+
+                    }
+                } 
+            }
+        }
     }
 }
