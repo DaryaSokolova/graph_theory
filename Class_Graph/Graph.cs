@@ -633,7 +633,7 @@ namespace Task
         // /  \
         //3  - 2
 
-        public void PrintResList ()
+        public void PrintResList()
         {
             for (int i = 0; i < resList.Count; i++)
             {
@@ -685,7 +685,6 @@ namespace Task
 
                 if (!used[j])
                 {
-                    //пусть это вершина с мин d[j]
                     used[j] = true;
                 }
             }
@@ -750,7 +749,7 @@ namespace Task
             return p;
         }
 
-        public void IV_A (int u, int v)
+        public void IV_A(int u, int v)
         {
             int[] Arr = DijkstraD(u);
 
@@ -785,7 +784,6 @@ namespace Task
 
                         int v1 = temp[indexT];
 
-                        //Console.WriteLine(ArrNode[i].ValueNode + " " + ArrNode[j].ValueNode + " " + v1 + " " + val);
                         if (v1 == val)
                         {
                             string[] pT = DijkstraP(ArrNode[i].ValueNode);
@@ -793,11 +791,11 @@ namespace Task
                         }
 
                     }
-                } 
+                }
             }
         }
 
-        private void Bell_Ford(int s)
+        private int[] Bell_Ford(int s, int v1, int v2)
         {
             int[] d = new int[ArrNode.Count];
 
@@ -811,8 +809,18 @@ namespace Task
                 }
             }
 
-            for (int i = 0; i < ArrNode.Count - 1; i++)
+            int[] p = new int[ArrNode.Count];
+
+            for (int i = 0; i < ArrNode.Count; i++)
             {
+                p[i] = 0;
+            }
+
+            int x = -1;
+            List<int> xArr = new List<int>();
+            for (int i1 = 0; i1 < ArrNode.Count; i1++)
+            {
+                x = -1;
                 for (int j = 0; j < ArrForWeightEdge.Count; j++)
                 {
                     int ind = FindIndexOfNode(ArrForWeightEdge[j].ValFrom);
@@ -821,23 +829,66 @@ namespace Task
                         if (d[FindIndexOfNode(ArrForWeightEdge[j].ValTo)] > d[ind] + ArrForWeightEdge[j].Weight)
                         {
                             d[FindIndexOfNode(ArrForWeightEdge[j].ValTo)] = d[ind] + ArrForWeightEdge[j].Weight;
+                            p[FindIndexOfNode(ArrForWeightEdge[j].ValTo)] = ArrForWeightEdge[j].ValFrom.ValueNode;
+                            x = FindIndexOfNode(ArrForWeightEdge[j].ValTo);
                         }
                     }
                 }
             }
 
-            for (int i = 0; i < d.Length; i++)
+            if (x == -1)
+                Console.WriteLine("No negative cycle from ");
+            else
             {
-                Console.WriteLine(s + " " + ArrNode[i].ValueNode + " " + d[i]);
+                List<bool> used = new List<bool>();
+                for (int i = 0; i < ArrNode.Count; i++)
+                {
+                    used.Add(false);
+                }
+
+                int y = x;
+                used[x] = true;
+
+                while (true)
+                {
+                    y = p[y]; if (used[y]) break; used[y] = true;
+                }
+
+                List<int> path = new List<int>();
+                for (int c = y; c != y || path.Count == 0; c = p[c])
+                {
+                    path.Add(c);
+                }
+                path.Reverse();
+
+                Console.WriteLine("Negative cycle: ");
+                for (int i = 0; i < path.Count; ++i)
+                {
+                    Console.WriteLine(path[i]);
+                }
             }
+
+            if (x == -1)
+            {
+                Console.WriteLine(v1 + " " + d[FindIndexOfNode(FindNode(v1))]);
+                Console.WriteLine(v2 + " " + d[FindIndexOfNode(FindNode(v2))]);
+            }
+            else
+            {
+                Console.WriteLine("!!!Negative cycle");
+            }
+
+            return d;
         }
 
-        public void IV_B()
+        public void IV_C(int u, int v1, int v2)
         {
-            for (int i = 0; i < ArrNode.Count; i++)
-            {
-                Bell_Ford(ArrNode[i].ValueNode);
-            }
+            int[] d = Bell_Ford(u, v1, v2);
+        }
+
+        public void Floyd()
+        {
+
         }
     }
 }

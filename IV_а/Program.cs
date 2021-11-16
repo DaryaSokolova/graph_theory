@@ -14,10 +14,11 @@ namespace Task
             string path5 = @"C:\graph\GraphReadingNotOrgraph2.txt";
             string path6 = @"C:\graph\ExII.txt";
             string path7 = @"C:\graph\ExCarcass.txt";
+            string path8 = @"C:\graph\IV.txt";
 
             //Graph g = new Graph(false); //пустой граф
 
-            Graph p = new Graph(path7); //из файлика
+            Graph p = new Graph(path8); //из файлика
 
             p.AddWeightInEdge(1, 3, 12);
             p.AddWeightInEdge(1, 2, 3);

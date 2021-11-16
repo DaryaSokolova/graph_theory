@@ -8,31 +8,36 @@ namespace Task
         {
             Console.WriteLine("Hello World!");
 
-
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            string path2 = @"C:\graph\GraphReadingNotOrgraph.txt";
-            string path3 = @"C:\graph\GraphWriting.txt";
-            string path5 = @"C:\graph\GraphReadingNotOrgraph2.txt";
-            string path6 = @"C:\graph\ExII.txt";
-            string path7 = @"C:\graph\ExCarcass.txt";
+            string path7 = @"C:\graph\IV_2.txt";
+            string path8 = @"C:\graph\IV_3.txt";
 
             //Graph g = new Graph(false); //пустой граф
 
-            Graph p = new Graph(path7); //из файлика
+            Graph p = new Graph(path8); //из файлика
 
-            p.AddWeightInEdge(1, 3, 12);
-            p.AddWeightInEdge(1, 2, 3);
-            p.AddWeightInEdge(3, 6, 10);
-            p.AddWeightInEdge(2, 4, 5);
-            p.AddWeightInEdge(2, 3, 7);
-            p.AddWeightInEdge(4, 7, 5);
-            p.AddWeightInEdge(6, 7, 25);
+            //p.AddWeightInEdge(0, 2, 4);
+            //p.AddWeightInEdge(0, 1, 5);
+            //p.AddWeightInEdge(1, 2, 4);
+            //p.AddWeightInEdge(2, 3, 2);
+            //p.AddWeightInEdge(3, 1, 17);
+            //p.AddWeightInEdge(2, 4, -4);
+            //p.AddWeightInEdge(4, 5, 3);
+            //p.AddWeightInEdge(5, 2, -2);
+
+            p.AddWeightInEdge(0, 2, 10);
+            p.AddWeightInEdge(0, 3, 3);
+            p.AddWeightInEdge(1, 0, 8);
+            p.AddWeightInEdge(3, 1, -4);
+            p.AddWeightInEdge(3, 2, 6);
+            p.AddWeightInEdge(2, 3, -2);
+            p.AddWeightInEdge(4, 2, 9);
 
             p.PrintArrNode();
 
             p.PrintEdgeWeights();
 
-            p.IV_B();
+            p.IV_C(0, 1, 2);
         }
     }
 }
