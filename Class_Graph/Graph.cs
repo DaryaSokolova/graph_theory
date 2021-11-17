@@ -886,9 +886,154 @@ namespace Task
             int[] d = Bell_Ford(u, v1, v2);
         }
 
-        public void Floyd()
+        public int[,] Floyd()
         {
+            //При наличии цикла отрицательного веса в матрице D появятся отрицательные числа на главной диагонали.
+            int[,] d = new int[ArrNode.Count, ArrNode.Count];
 
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                for (int j = 0; j < ArrNode.Count; j++)
+                {
+                    d[i, j] = 1000;
+                }
+            }
+
+            for (int i = 0; i < ArrForWeightEdge.Count; i++)
+            {
+                d[ArrForWeightEdge[i].ValFrom.ValueNode, ArrForWeightEdge[i].ValTo.ValueNode] = ArrForWeightEdge[i].Weight;
+            }
+
+            int[,] p = new int[ArrNode.Count, ArrNode.Count];
+
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                for (int j = 0; j < ArrNode.Count; j++)
+                {
+                    p[i, j] = -1;
+                }
+            }
+
+            for (int k = 0; k < ArrNode.Count; k++)
+            {
+                for (int i = 0; i < ArrNode.Count; i++)
+                {
+                    for (int j = 0; j < ArrNode.Count; j++)
+                    {
+                        if (d[i, k] < 1000 && d[k, j] < 1000 && d[k, j] < 1000)
+                        {
+                            if (d[i, k] + d[k, j] < d[i, j])
+                            {
+                                d[i, j] = d[i, k] + d[k, j];
+                                p[i, j] = k;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            return p;
+        }
+
+        public int[,] FloydD()
+        {
+            int[,] d = new int[ArrNode.Count, ArrNode.Count];
+
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                for (int j = 0; j < ArrNode.Count; j++)
+                {
+                    d[i, j] = 1000;
+                }
+            }
+
+            for (int i = 0; i < ArrForWeightEdge.Count; i++)
+            {
+                d[ArrForWeightEdge[i].ValFrom.ValueNode, ArrForWeightEdge[i].ValTo.ValueNode] = ArrForWeightEdge[i].Weight;
+            }
+
+            int[,] p = new int[ArrNode.Count, ArrNode.Count];
+
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                for (int j = 0; j < ArrNode.Count; j++)
+                {
+                    p[i, j] = -1;
+                }
+            }
+
+            for (int k = 0; k < ArrNode.Count; k++)
+            {
+                for (int i = 0; i < ArrNode.Count; i++)
+                {
+                    for (int j = 0; j < ArrNode.Count; j++)
+                    {
+                        if (d[i, k] < 1000 && d[k, j] < 1000 && d[k, j] < 1000)
+                        {
+                            if (d[i, k] + d[k, j] < d[i, j])
+                            {
+                                d[i, j] = d[i, k] + d[k, j];
+                                p[i, j] = k;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            return d;
+        }
+
+        List<int> pathFloyd = new List<int>();
+        void get_path(int a, int b)
+        {
+            int[,] p = Floyd();
+            if (p[a, b] == -1 || p[a, b] == a || p[a, b] == b)
+            {
+                int[,] d = FloydD();
+                if (d[a, b] < 1000)
+                {
+                    pathFloyd.Add(b);
+                }
+                return;
+            }
+
+            get_path(a, p[a, b]);
+            get_path(p[a, b], b);
+        }
+
+        public void IV_B()
+        {
+            int[,] d = FloydD();
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                for (int j = 0; j < ArrNode.Count; j++)
+                {
+                    Console.WriteLine("Кратчайший путь из " + ArrNode[i].ValueNode + " в " + ArrNode[j].ValueNode);
+                    pathFloyd.Add(ArrNode[i].ValueNode);
+                    get_path(ArrNode[i].ValueNode, ArrNode[j].ValueNode);
+
+                    if (pathFloyd.Count == 1)
+                    {
+                        Console.WriteLine("Пути нет или путь из вершину в саму себя/");
+                    }
+                    else
+                    {
+
+                        for (int i1 = 0; i1 < pathFloyd.Count; i1++)
+                        {
+                            Console.Write(pathFloyd[i1] + " ");
+                        }
+
+                        Console.Write(" = " + d[ArrNode[i].ValueNode, ArrNode[j].ValueNode]);
+                        Console.WriteLine();
+                    }
+                    
+                    pathFloyd.Clear();
+                }
+
+            }
         }
     }
 }
