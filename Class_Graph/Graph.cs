@@ -933,6 +933,15 @@ namespace Task
                 }
             }
 
+            for (int i = 0; i < ArrNode.Count; i++)
+            {
+                for (int j = 0; j < ArrNode.Count; j++)
+                {
+                    Console.Write(d[i, j] + "  ");
+                }
+                Console.WriteLine();
+            }
+
             return p;
         }
 
