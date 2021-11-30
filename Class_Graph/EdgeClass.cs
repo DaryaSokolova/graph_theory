@@ -23,11 +23,15 @@ namespace Task
             get; set;
         }
 
+        public int flow;          // поток через дугу
+        public int flow_capacity; // пропускная способность дуги
+
         public EdgeClass(NodeClass valFrom, NodeClass valTo, int weight)
         {
             ValFrom = valFrom;
             ValTo = valTo;
             Weight = weight;
         }
+
     }
 }

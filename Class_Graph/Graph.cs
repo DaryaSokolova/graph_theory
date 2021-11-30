@@ -1044,5 +1044,95 @@ namespace Task
 
             }
         }
+
+        //МЕТОД ДЛЯ ДОБАВЛЕНИЯ ПРОПУСКНОЙ СПОСОБНОСТИ
+        public void AddFlowInEdge(int valFrom, int valTo, int f, int c)
+        {
+            if (FindIndexEdgeForWeight(FindNode(valFrom), FindNode(valTo)) != -1)
+            {
+                int indexE = FindIndexEdgeForWeight(FindNode(valFrom), FindNode(valTo));
+                ArrForWeightEdge[indexE].flow = f;
+                ArrForWeightEdge[indexE].flow_capacity = c;
+            }
+
+            else
+            {
+                throw new Exception("Дуги не существует");
+            }
+        }
+
+        private List<bool> usedPotok = new List<bool>();
+
+        private int dfsPotok(int curV, int m, int t)
+        {
+            Console.WriteLine(curV + " " + m + " " + t);
+            if (curV == t)
+            {
+                return m;
+            }
+
+            if (m == 0 || usedPotok[curV]) 
+            {
+                return 0; 
+            }
+
+            usedPotok[curV] = true;
+            NodeClass n = FindNode(curV);
+            for (int e = 0; e < n.AdjacencyList.Count; e++)
+            {
+                if (FindIndexEdgeForWeight(n, FindNode(n.AdjacencyList[e])) != -1)
+                {
+                    EdgeClass eTemp = ArrForWeightEdge[FindIndexEdgeForWeight(n, FindNode(n.AdjacencyList[e]))];
+                    int r = eTemp.flow_capacity - eTemp.flow;
+                    int f = dfsPotok(eTemp.ValTo.ValueNode, Math.Min(r, m), t);
+
+                    if (f > 0)
+                    {
+                        eTemp.flow += f;
+                        return f;
+                    }
+                }
+
+            }
+            return 0;
+        }
+
+        public int Ford_fulkerson(int s, int t)
+        {
+            int resF = 0;
+
+            while (true)
+            {
+                usedPotok.Clear();
+
+                for (int i = 0; i < ArrForWeightEdge.Count; i++)
+                {
+                    usedPotok.Add(false);
+                }
+
+                int f = dfsPotok(s, 1000, t);
+                Console.WriteLine("ДОБАВЛЯЕМ " + f);
+                Console.WriteLine();
+
+                if (f == 0) 
+                {
+                    break;
+                }
+
+
+                resF += f;
+            }
+
+            for (int i = 0; i < ArrForWeightEdge.Count; i++)
+            {
+                Console.WriteLine ( ArrForWeightEdge[i].ValFrom.ValueNode + " " 
+                                  + ArrForWeightEdge[i].ValTo.ValueNode + " " 
+                                  + ArrForWeightEdge[i].flow + " " 
+                                  + ArrForWeightEdge[i].flow_capacity );
+            }
+            return resF;
+        }
+
+
     }
 }

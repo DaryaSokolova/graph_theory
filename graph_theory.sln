@@ -17,11 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Breadth_First_Search II", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carcass_Algorithm_Prima III", "Carcass_Algorithm_Prima III\Carcass_Algorithm_Prima III.csproj", "{134CBE4C-6241-42A8-9472-76A9E7776EA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IV_а", "IV_а\IV_а.csproj", "{82385A76-5BEA-45B4-AB6D-7AA14D64CAAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IV_а", "IV_а\IV_а.csproj", "{82385A76-5BEA-45B4-AB6D-7AA14D64CAAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IV_с", "IV_b\IV_с.csproj", "{BB42B162-6EDA-4DE8-B56A-EDF7E5D7949C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IV_с", "IV_b\IV_с.csproj", "{BB42B162-6EDA-4DE8-B56A-EDF7E5D7949C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IV_b", "VI_c\IV_b.csproj", "{BEBB8E2C-C3CE-4284-9DE9-59579D82B877}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IV_b", "VI_c\IV_b.csproj", "{BEBB8E2C-C3CE-4284-9DE9-59579D82B877}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V", "V\V.csproj", "{707784D1-E7D8-46EC-B4F9-0A7503D3478C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{BEBB8E2C-C3CE-4284-9DE9-59579D82B877}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEBB8E2C-C3CE-4284-9DE9-59579D82B877}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEBB8E2C-C3CE-4284-9DE9-59579D82B877}.Release|Any CPU.Build.0 = Release|Any CPU
+		{707784D1-E7D8-46EC-B4F9-0A7503D3478C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{707784D1-E7D8-46EC-B4F9-0A7503D3478C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{707784D1-E7D8-46EC-B4F9-0A7503D3478C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{707784D1-E7D8-46EC-B4F9-0A7503D3478C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
