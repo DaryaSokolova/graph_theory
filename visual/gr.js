@@ -24,11 +24,6 @@ function draw(arr, retArr) {
                 if (retArr[i][j] > 0 && i != j && (retArr[i][j] == retArr[j][i] || retArr[j][i] == 0)) {
                     let tempForEdge = arr[j];
 
-                    // ctx.beginPath();
-                    // ctx.moveTo(temp.x, temp.y);
-                    // ctx.lineTo(tempForEdge.x, tempForEdge.y);
-                    // ctx.stroke();
-
                     ctx.beginPath();
                     canvas_arrow(ctx, temp.x, temp.y, tempForEdge.x, tempForEdge.y);
                     ctx.stroke();
@@ -116,6 +111,7 @@ window.onload = function () {
     const btnStart = document.getElementById('startButton');
     const btnClear = document.getElementById('clearBtn');
     const btnDraw = document.getElementById('drawBtn');
+    const btnDFS = document.getElementById('dfsBtn');
     const arrNode = [];
 
     function clearTable() {
@@ -207,6 +203,7 @@ window.onload = function () {
 
     btnStart.onclick = function () {
         document.getElementById("drawBtn").disabled = false;
+        document.getElementById("dfsBtn").disabled = false;
         let num = get_nums();
         create_table(num, num)
     }
@@ -235,5 +232,44 @@ window.onload = function () {
         let num = get_nums();
         let retArr = save_and_return_arr();
         counting_nodes(num, retArr);
+    }
+
+    function dfsElem(num, node, retArr, used)
+    {
+        used.push(node);
+        for (let i = 0; i < retArr[node].length; i++) {
+            if (retArr[node][i] > 0 && i != node && used.indexOf(i) == -1) {
+                used = dfs(num, i, retArr, used);
+            }
+        }
+    }
+
+    function dfs(num, node, retArr, used) {
+
+        used.push(node);
+        for (let i = 0; i < retArr[node].length; i++) {
+            if (retArr[node][i] > 0 && i != node && used.indexOf(i) == -1) {
+                dfs(num, i, retArr, used);
+            }
+        }
+
+        if (used.length < num && node == 0) {
+            for (let i = 0; i < num; i++) {
+                if (used.indexOf(i) == -1) {
+                    dfs(num, i, retArr, used);
+                }
+            }
+            
+            console.log(used);
+        }
+
+    }
+
+    btnDFS.onclick = function () {
+
+        let num = get_nums();
+        let retArr = save_and_return_arr();
+
+        dfs(num, 0, retArr, []);
     }
 }
