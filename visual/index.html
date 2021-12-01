@@ -1,0 +1,34 @@
+<!doctype html5>
+<html lang="ru">
+
+<head>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <meta charset="UTF-8">
+    <title>Graph visualization</title>
+    <script src="gr.js"></script>
+</head>
+
+<body>
+    
+    <table id="main_tb_container" border="1" style="margin-top:20px;" contenteditable="">
+    </table>
+    
+    <div class="btnStyle">
+        
+        <input id="startButton" type="button" value="Начать" class="gradient-button" />
+        <input id="clearBtn" type="button" value="Очистить" class="gradient-button" />
+        <input id="drawBtn" type="button" value="Нарисовать" class="gradient-button" value="disable" disabled/>
+        
+    </div>
+    
+    <p class="inputStyle"><b>Число узлов: </b><br>
+        <!-- <input id="numNodes" type="number" size="40"> -->
+        <input id="numNodes" type="number" class="text-field__input" >
+    </p>
+    
+    <canvas id="canvas" width="1000" height="1000" class = "canvasStyle"></canvas>
+
+
+</body>
+
+</html>
