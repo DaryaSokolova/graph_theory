@@ -1119,7 +1119,6 @@ namespace Task
                     break;
                 }
 
-
                 resF += f;
             }
 

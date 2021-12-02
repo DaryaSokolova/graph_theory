@@ -8,7 +8,7 @@ function draw(arr, retArr) {
         for (let i = 0; i < arr.length; i++) {
 
             let temp = arr[i];
-            console.log(temp);
+            //console.log(temp);
             ctx.fillStyle = 'rgb(200, 0, 0)';
             ctx.beginPath();
             ctx.arc(temp.x, temp.y, 5, 0, 2 * Math.PI);
@@ -122,6 +122,7 @@ window.onload = function () {
 
     btnClear.onclick = function () {
         document.getElementById("drawBtn").disabled = true;
+        document.getElementById("dfsBtn").disabled = true;
 
         for (i = table.tBodies[0].rows.length - 1; i >= 0; i--) { table.tBodies[0].deleteRow(i); }
 
@@ -169,7 +170,7 @@ window.onload = function () {
 
     function create_table(myRows, myCols) {
 
-        console.log(table.rows.length);
+        //console.log(table.rows.length);
         if (table.rows.length > 0) {
             for (i = table.tBodies[0].rows.length - 1; i >= 0; i--) {
                 table.tBodies[0].deleteRow(i);
@@ -203,7 +204,6 @@ window.onload = function () {
 
     btnStart.onclick = function () {
         document.getElementById("drawBtn").disabled = false;
-        document.getElementById("dfsBtn").disabled = false;
         let num = get_nums();
         create_table(num, num)
     }
@@ -211,7 +211,7 @@ window.onload = function () {
     function save_and_return_arr() {
         let num = get_nums();
 
-        console.log(table)
+        //console.log(table)
 
         let valInputTable = new Array(num);
         for (let i = 0; i < valInputTable.length; i++) {
@@ -232,16 +232,7 @@ window.onload = function () {
         let num = get_nums();
         let retArr = save_and_return_arr();
         counting_nodes(num, retArr);
-    }
-
-    function dfsElem(num, node, retArr, used)
-    {
-        used.push(node);
-        for (let i = 0; i < retArr[node].length; i++) {
-            if (retArr[node][i] > 0 && i != node && used.indexOf(i) == -1) {
-                used = dfs(num, i, retArr, used);
-            }
-        }
+        document.getElementById("dfsBtn").disabled = false;
     }
 
     function dfs(num, node, retArr, used) {
@@ -261,8 +252,10 @@ window.onload = function () {
             }
             
             console.log(used);
+            alert(used);
         }
 
+        document.getElementById("dfsBtn").disabled = true;
     }
 
     btnDFS.onclick = function () {
