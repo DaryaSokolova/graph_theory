@@ -1,0 +1,96 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <title>Graph visualization</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+    <ol>
+        <li>ДОБАВИТЬ ВЕРШИНУ: Считывается id вершины из соответствующего поля и имя вершины, в случае, если имя
+            "пустое", в
+            качестве имени будет присвоен id. Id - только цифры, иное ввести и не получится :3
+            Также при создании вершины к введенному вами имени будет добавлен и id (для удобства работы с матрицей
+            смежности).</li>
+        <li>ДОБАВИТЬ ДУГУ: Считываются поля FROM и TO (принимаются только цифры), соответсвенно id вершин, между
+            которыми
+            нужно образовать связь. Ввод id несуществующей дуги будет проигнорирован.
+            Также считывается поле Weight - вес предполагаемой дуги. Из одной вершины в другую может быть несколько дуг
+            с
+            разными весами. Если вы оставите поле Weight пустым, дуга будет создана и будет числиться, но в алгоритме
+            Дейкстры она
+            засчитана не будет.</li>
+        <li>УДАЛИТЬ ВЕРШИНУ: в поле id введите id удаляемой вершины, ввод имени не обязателен.</li>
+        <li> УДАЛИТЬ ДУГУ: в поля FROM TO введите id соответствующих концов. Если дуг подходящих по описание несколько,
+            будут удалены все. Введенный вес игнорируется.</li>
+        <li>ОЧИСТИТЬ: безвозвратно удалит все введенное и созданное в процессе игры в граф.</li>
+        <li>ДЕЙКСТРА: из поля id считыается id вершины, для которой считаем все кратчацйшие пути, если там пусто, то по
+            дефолту будет посчитано от первой в списке вершин вершины. В результате работы будет выведена табличка
+            кратчайших путей.</li>
+        <li>ДЕФОЛТНЫЙ ГРАФ: будет сгенерирован граф с 5 вершинами. Его можно менять как угодно, он существует для удобства тестирования.</li>
+        <li>ВИЗУАЛИЗАЦИЯ: можно двигать, масштабировать, выделять вершину и дуги, "трясти" граф, передвигать мышкой.
+        </li>
+        <li>МАТРИЦА СМЕЖНОСТИ: если пути нет или Weight между ними пустой - infinity, пути нет, если есть, то
+            соответствующий дуге вес.</li>
+    </ol>
+
+    <div class="btnStyle">
+
+        <input id="startButton" type="button" value="Добавить вершину" class="gradient-button" />
+        <input id="addEdge" type="button" value="Добавить дугу" class="gradient-button" />
+        <input id="delNodeBtn" type="button" value="Удалить вершину" class="gradient-button" />
+        <input id="delEdgeBtn" type="button" value="Удалить дугу" class="gradient-button" />
+        <input id="clear" type="button" value="Очистить" class="gradient-button" />
+
+    </div>
+
+    <div class="btnStyle">
+
+        <input id="deicstra" type="button" value="Дейкстра" class="gradient-button" />
+        <input id="default" type="button" value="Дефолтный граф" class="gradient-button" />
+
+    </div>
+
+    <div id="addNode" class="nothiddenobject">
+        <p class="inputStyle"><b>id вершины: </b><br>
+            <input type="text"
+                onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                id="numNodes" class="text-field__input">
+        </p>
+        <p class="inputStyle"><b>__name вершины: </b><br>
+            <input id="nameNodes" type="text" class="text-field__input">
+        </p>
+
+    </div>
+
+    <div id="addEdge" class="nothiddenobject">
+        <p class="inputStyle"><b>__From: </b><br>
+            <input id="fromEdge" type="text"
+                onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                class="text-field__input">
+        </p>
+        <p class="inputStyle"><b>__To: </b><br>
+            <input id="toEdge" type="text"
+                onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                class="text-field__input">
+        </p>
+        <p class="inputStyle"><b>__Weight: </b><br>
+            <input id="Weight" type="text"
+                onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                class="text-field__input">
+        </p>
+    </div>
+
+    <table id="deicstraTable" class="table"></table>
+    <p id="relationOfCounts" class="nothiddenobject"></p>
+
+
+    <div id="mynetwork"></div>
+    <script src="scr.js"> </script>
+
+    <table id="table" class="table"></table>
+
+</body>
+
+</html>
