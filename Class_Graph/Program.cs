@@ -16,7 +16,9 @@ namespace Task
 
             //Graph g = new Graph(false); //пустой граф
 
-            Graph p = new Graph(path2); //из файлика
+            Graph p = new Graph(path1); //из файлика
+
+            Graph g = new Graph(p);
 
             Console.WriteLine("Для вашего удобства по умолчанию считывается из файла");
             Console.WriteLine("для смены способа создания измените на соответсвующий объект графа");

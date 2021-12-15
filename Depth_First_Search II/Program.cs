@@ -24,7 +24,7 @@ namespace Task
 
             try
             {
-                p.TaskDFSII(5, 40, 2);
+                p.TaskDFSII(5, 40, 1);
                 p.PrintArrNode();
             }
             catch (Exception ex)

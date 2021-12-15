@@ -14,24 +14,24 @@ namespace Task
 
             //Graph g = new Graph(false); //пустой граф
 
-            Graph p = new Graph(path8); //из файлика
+            Graph p = new Graph(path7); //из файлика
 
-            //p.AddWeightInEdge(0, 2, 4);
-            //p.AddWeightInEdge(0, 1, 5);
-            //p.AddWeightInEdge(1, 2, 4);
-            //p.AddWeightInEdge(2, 3, 2);
-            //p.AddWeightInEdge(3, 1, 17);
-            //p.AddWeightInEdge(2, 4, -4);
-            //p.AddWeightInEdge(4, 5, 3);
-            //p.AddWeightInEdge(5, 2, -2);
+            p.AddWeightInEdge(0, 2, 4);
+            p.AddWeightInEdge(0, 1, 5);
+            p.AddWeightInEdge(1, 2, 4);
+            p.AddWeightInEdge(2, 3, 2);
+            p.AddWeightInEdge(3, 1, 17);
+            p.AddWeightInEdge(2, 4, -4);
+            p.AddWeightInEdge(4, 5, 3);
+            p.AddWeightInEdge(5, 2, -2);
 
-            p.AddWeightInEdge(0, 2, 10);
-            p.AddWeightInEdge(0, 3, 3);
-            p.AddWeightInEdge(1, 0, 8);
-            p.AddWeightInEdge(3, 1, -4);
-            p.AddWeightInEdge(3, 2, 6);
-            p.AddWeightInEdge(2, 3, -2);
-            p.AddWeightInEdge(4, 2, 9);
+            //p.AddWeightInEdge(0, 2, 10);
+            //p.AddWeightInEdge(0, 3, 3);
+            //p.AddWeightInEdge(1, 0, 8);
+            //p.AddWeightInEdge(3, 1, -4);
+            //p.AddWeightInEdge(3, 2, 6);
+            //p.AddWeightInEdge(2, 3, -2);
+            //p.AddWeightInEdge(4, 2, 9);
 
             p.PrintArrNode();
 

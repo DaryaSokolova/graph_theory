@@ -23,8 +23,6 @@ namespace Task
             Graph p1 = new Graph(path2);
             p1.AddNodeInGraph(666);
             p1.AddEdgeInGraph(45, 6);
-            p1.DeleteNodeFromGraph(5);
-            p1.DeleteEdgeFromGraph(5, 10);
             Console.WriteLine("p1: ");
             p1.PrintArrNode();
 
